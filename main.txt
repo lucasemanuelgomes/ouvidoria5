@@ -40,6 +40,7 @@ while opcao != 9:
             print("listagem concluída")
 
             encerrarBancoDados(conexao)
+
  elif opcao ==2:
         tip = input(
             "Digite o número da categoria de manifestação que voce quer listar: 1- reclamação 2-sugestão ou 3- elogio")
@@ -60,6 +61,7 @@ while opcao != 9:
             print("listagem de categoria concluída")
 
         encerrarBancoDados(conexao)
+
 elif opcao == 3:
 
         tip = input("Digite o número da categoria da sua manifestação: 1- reclamação 2-sugestão ou 3- elogio: ")
@@ -76,5 +78,32 @@ elif opcao == 3:
         insertNoBancoDados(conexao, sqlInserir, valores)
 
         print("manifestação cadastrada com sucesso")
+
+        encerrarBancoDados(conexao)
+
+elif opcao ==4:
+
+        conexao = abrirBancoDados('localhost', 'root', 'root', 'ouvidoria')
+
+        sqlcontar = 'select count(Código) from MANIFESTACAO '
+        sqlconta1 = 'select count(Tipo) from MANIFESTACAO where Tipo = 1 '
+        sqlconta2 = 'select count(Tipo) from MANIFESTACAO  where Tipo = 2 '
+        sqlconta3 = 'select count(Tipo) from MANIFESTACAO   where Tipo = 3'
+
+        listarmanifestacao = listarBancoDados(conexao, sqlcontar)
+        listarmanifestacao1 = listarBancoDados(conexao, sqlconta1)
+        listarmanifestacao2 = listarBancoDados(conexao, sqlconta2)
+        listarmanifestacao3 = listarBancoDados(conexao, sqlconta3)
+
+        print("O número de manifestações é:",listarmanifestacao[0][0])
+        print("O número de reclamações é:", listarmanifestacao1[0][0])
+        print("O número de sugestões é:", listarmanifestacao2[0][0])
+        print("O número de elogios é:", listarmanifestacao3[0][0])
+
+        print("Exibição realizada com sucesso")
+
+
+
+
 
         encerrarBancoDados(conexao)
