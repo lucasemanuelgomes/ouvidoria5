@@ -1,0 +1,11 @@
+create database ouvidoria;
+use  ouvidoria;
+
+create table MANIFESTACAO(
+Código INT(8) AUTO_INCREMENT,
+Titulo varchar(20),
+Descricao varchar(30),
+Tipo varchar(30),
+Autor varchar(30),
+primary key(Código)
+);
