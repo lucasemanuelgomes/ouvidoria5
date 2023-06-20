@@ -60,3 +60,21 @@ while opcao != 9:
             print("listagem de categoria concluída")
 
         encerrarBancoDados(conexao)
+elif opcao == 3:
+
+        tip = input("Digite o número da categoria da sua manifestação: 1- reclamação 2-sugestão ou 3- elogio: ")
+        nome = input("Digite o titulo da manifestação: ")
+        nome_autor = input("Digite o nome do autor da manifestação: ")
+        desc = input("Digite o tipo da manifestação selecionada (ex:reclamação ,sugestão, elogio): ")
+
+        conexao = abrirBancoDados('localhost', 'root', 'root', 'ouvidoria')
+
+        sqlInserir= 'insert into MANIFESTACAO (Tipo,Titulo,Autor,Descricao ) values(%s,%s,%s,%s)'
+
+        valores= (tip,nome,nome_autor,desc)
+
+        insertNoBancoDados(conexao, sqlInserir, valores)
+
+        print("manifestação cadastrada com sucesso")
+
+        encerrarBancoDados(conexao)
